@@ -1,0 +1,786 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OfficeManageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ApplyAccount">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="ApplyID" />
+          </Key>
+          <Property Name="StaffID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApplyID" Type="int" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="RegisterName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplyBackup">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="ApplyID" />
+          </Key>
+          <Property Name="StaffID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApplyID" Type="int" Nullable="false" />
+          <Property Name="ProjectName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Members" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="BackupFolderPath" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="LeadTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplyException">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="ApplyID" />
+          </Key>
+          <Property Name="StaffID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApplyID" Type="int" Nullable="false" />
+          <Property Name="ExtensionTerm" Type="datetime" />
+          <Property Name="ExceptionTreatment" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Purpose" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplyMailingList">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="ApplyID" />
+          </Key>
+          <Property Name="StaffID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApplyID" Type="int" Nullable="false" />
+          <Property Name="MailingListName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Usage" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="5000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplyManage">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="ApplyID" />
+            <PropertyRef Name="ApplyTypeID" />
+            <PropertyRef Name="ApplyMethodID" />
+          </Key>
+          <Property Name="StaffID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApplyID" Type="int" Nullable="false" />
+          <Property Name="ApplyTypeID" Type="int" Nullable="false" />
+          <Property Name="ApplyMethodID" Type="int" Nullable="false" />
+          <Property Name="ApplyStatusID" Type="int" Nullable="false" />
+          <Property Name="Boss_StaffID" Type="varchar" MaxLength="50" />
+          <Property Name="ApplyDate" Type="datetime" />
+          <Property Name="LimitDate" Type="datetime" />
+          <Property Name="ApplyCode" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ApplyServer">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="ApplyID" />
+          </Key>
+          <Property Name="StaffID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApplyID" Type="int" Nullable="false" />
+          <Property Name="ManageNumber" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OS" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ExtensionTerm" Type="datetime" />
+          <Property Name="ApplyReason" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplyVPN">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="ApplyID" />
+          </Key>
+          <Property Name="StaffID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApplyID" Type="int" Nullable="false" />
+          <Property Name="ManageNumber" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ExtensionTerm" Type="datetime" />
+          <Property Name="ApplyReason" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplyWireless">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="ApplyID" />
+          </Key>
+          <Property Name="StaffID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApplyID" Type="int" Nullable="false" />
+          <Property Name="ManageNumber" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MacAddress" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ExtensionTerm" Type="datetime" />
+          <Property Name="ApplyReason" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_Animal">
+          <Key>
+            <PropertyRef Name="AnimalID" />
+          </Key>
+          <Property Name="AnimalID" Type="int" Nullable="false" />
+          <Property Name="AnimalName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_ApplyMethod">
+          <Key>
+            <PropertyRef Name="MethodID" />
+          </Key>
+          <Property Name="MethodID" Type="int" Nullable="false" />
+          <Property Name="MethodName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_ApplyStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="StatusName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_ApplyType">
+          <Key>
+            <PropertyRef Name="ApplyTypeID" />
+          </Key>
+          <Property Name="ApplyTypeID" Type="int" Nullable="false" />
+          <Property Name="ApplyTypeName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_AuthLevel">
+          <Key>
+            <PropertyRef Name="AuthLevelID" />
+          </Key>
+          <Property Name="AuthLevelID" Type="int" Nullable="false" />
+          <Property Name="AuthLevelName" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_BloodType">
+          <Key>
+            <PropertyRef Name="BloodTypeID" />
+          </Key>
+          <Property Name="BloodTypeID" Type="int" Nullable="false" />
+          <Property Name="BloodType" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_Department1">
+          <Key>
+            <PropertyRef Name="Department1ID" />
+          </Key>
+          <Property Name="Department1ID" Type="int" Nullable="false" />
+          <Property Name="Department1Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_Department2">
+          <Key>
+            <PropertyRef Name="Department2ID" />
+          </Key>
+          <Property Name="Department2ID" Type="int" Nullable="false" />
+          <Property Name="Department2Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_Department3">
+          <Key>
+            <PropertyRef Name="Department3ID" />
+          </Key>
+          <Property Name="Department3ID" Type="int" Nullable="false" />
+          <Property Name="Department3Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_Post">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="int" Nullable="false" />
+          <Property Name="PostName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonalInfo">
+          <Key>
+            <PropertyRef Name="StaffID" />
+          </Key>
+          <Property Name="StaffID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="LastName_Kana" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="FirstName_Kana" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Address1" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Address2" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Address3" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Address4" Type="varchar" MaxLength="1000" />
+          <Property Name="Tel_Personal1" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Tel_Personal2" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Tel_Personal3" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Tel_Company1" Type="varchar" MaxLength="1000" />
+          <Property Name="Tel_Company2" Type="varchar" MaxLength="1000" />
+          <Property Name="Tel_Company3" Type="varchar" MaxLength="1000" />
+          <Property Name="Email" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Birthday_Year" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Birthday_Month" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Birthday_Day" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="BloodTypeID" Type="int" />
+          <Property Name="AnimalID" Type="int" />
+          <Property Name="BirthPlace" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Motto" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="StaffInfo">
+          <Key>
+            <PropertyRef Name="StaffID" />
+          </Key>
+          <Property Name="StaffID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StaffNumber" Type="int" Nullable="false" />
+          <Property Name="Department1ID" Type="int" />
+          <Property Name="Department2ID" Type="int" />
+          <Property Name="Department3ID" Type="int" />
+          <Property Name="PostID" Type="int" Nullable="false" />
+          <Property Name="Period" Type="int" Nullable="false" />
+          <Property Name="AuthLevel" Type="int" Nullable="false" />
+          <Property Name="Club" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityContainer Name="OfficeManageModelStoreContainer">
+          <EntitySet Name="ApplyAccount" EntityType="Self.ApplyAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplyBackup" EntityType="Self.ApplyBackup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplyException" EntityType="Self.ApplyException" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplyMailingList" EntityType="Self.ApplyMailingList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplyManage" EntityType="Self.ApplyManage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplyServer" EntityType="Self.ApplyServer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplyVPN" EntityType="Self.ApplyVPN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplyWireless" EntityType="Self.ApplyWireless" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_Animal" EntityType="Self.MST_Animal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_ApplyMethod" EntityType="Self.MST_ApplyMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_ApplyStatus" EntityType="Self.MST_ApplyStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_ApplyType" EntityType="Self.MST_ApplyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_AuthLevel" EntityType="Self.MST_AuthLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_BloodType" EntityType="Self.MST_BloodType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_Company" EntityType="Self.MST_Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_Department1" EntityType="Self.MST_Department1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_Department2" EntityType="Self.MST_Department2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_Department3" EntityType="Self.MST_Department3" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MST_Post" EntityType="Self.MST_Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalInfo" EntityType="Self.PersonalInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StaffInfo" EntityType="Self.StaffInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OfficeManageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ApplyAccount">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="ApplyID" />
+          </Key>
+          <Property Name="StaffID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApplyID" Type="Int32" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="RegisterName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplyBackup">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="ApplyID" />
+          </Key>
+          <Property Name="StaffID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApplyID" Type="Int32" Nullable="false" />
+          <Property Name="ProjectName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Members" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BackupFolderPath" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LeadTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ApplyException">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="ApplyID" />
+          </Key>
+          <Property Name="StaffID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApplyID" Type="Int32" Nullable="false" />
+          <Property Name="ExtensionTerm" Type="DateTime" Precision="3" />
+          <Property Name="ExceptionTreatment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Purpose" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplyMailingList">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="ApplyID" />
+          </Key>
+          <Property Name="StaffID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApplyID" Type="Int32" Nullable="false" />
+          <Property Name="MailingListName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Usage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplyManage">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="ApplyID" />
+            <PropertyRef Name="ApplyTypeID" />
+            <PropertyRef Name="ApplyMethodID" />
+          </Key>
+          <Property Name="StaffID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApplyID" Type="Int32" Nullable="false" />
+          <Property Name="ApplyTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ApplyMethodID" Type="Int32" Nullable="false" />
+          <Property Name="ApplyStatusID" Type="Int32" Nullable="false" />
+          <Property Name="Boss_StaffID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApplyDate" Type="DateTime" Precision="3" />
+          <Property Name="LimitDate" Type="DateTime" Precision="3" />
+          <Property Name="ApplyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ApplyServer">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="ApplyID" />
+          </Key>
+          <Property Name="StaffID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApplyID" Type="Int32" Nullable="false" />
+          <Property Name="ManageNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExtensionTerm" Type="DateTime" Precision="3" />
+          <Property Name="ApplyReason" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplyVPN">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="ApplyID" />
+          </Key>
+          <Property Name="StaffID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApplyID" Type="Int32" Nullable="false" />
+          <Property Name="ManageNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExtensionTerm" Type="DateTime" Precision="3" />
+          <Property Name="ApplyReason" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplyWireless">
+          <Key>
+            <PropertyRef Name="StaffID" />
+            <PropertyRef Name="ApplyID" />
+          </Key>
+          <Property Name="StaffID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApplyID" Type="Int32" Nullable="false" />
+          <Property Name="ManageNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MacAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExtensionTerm" Type="DateTime" Precision="3" />
+          <Property Name="ApplyReason" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_Animal">
+          <Key>
+            <PropertyRef Name="AnimalID" />
+          </Key>
+          <Property Name="AnimalID" Type="Int32" Nullable="false" />
+          <Property Name="AnimalName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_ApplyMethod">
+          <Key>
+            <PropertyRef Name="MethodID" />
+          </Key>
+          <Property Name="MethodID" Type="Int32" Nullable="false" />
+          <Property Name="MethodName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_ApplyStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="StatusName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_ApplyType">
+          <Key>
+            <PropertyRef Name="ApplyTypeID" />
+          </Key>
+          <Property Name="ApplyTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ApplyTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_AuthLevel">
+          <Key>
+            <PropertyRef Name="AuthLevelID" />
+          </Key>
+          <Property Name="AuthLevelID" Type="Int32" Nullable="false" />
+          <Property Name="AuthLevelName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_BloodType">
+          <Key>
+            <PropertyRef Name="BloodTypeID" />
+          </Key>
+          <Property Name="BloodTypeID" Type="Int32" Nullable="false" />
+          <Property Name="BloodType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_Department1">
+          <Key>
+            <PropertyRef Name="Department1ID" />
+          </Key>
+          <Property Name="Department1ID" Type="Int32" Nullable="false" />
+          <Property Name="Department1Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_Department2">
+          <Key>
+            <PropertyRef Name="Department2ID" />
+          </Key>
+          <Property Name="Department2ID" Type="Int32" Nullable="false" />
+          <Property Name="Department2Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_Department3">
+          <Key>
+            <PropertyRef Name="Department3ID" />
+          </Key>
+          <Property Name="Department3ID" Type="Int32" Nullable="false" />
+          <Property Name="Department3Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MST_Post">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="Int32" Nullable="false" />
+          <Property Name="PostName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonalInfo">
+          <Key>
+            <PropertyRef Name="StaffID" />
+          </Key>
+          <Property Name="StaffID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName_Kana" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName_Kana" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address2" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address3" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address4" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Tel_Personal1" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tel_Personal2" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tel_Personal3" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tel_Company1" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Tel_Company2" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Tel_Company3" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Birthday_Year" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Birthday_Month" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Birthday_Day" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BloodTypeID" Type="Int32" />
+          <Property Name="AnimalID" Type="Int32" />
+          <Property Name="BirthPlace" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Motto" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StaffInfo">
+          <Key>
+            <PropertyRef Name="StaffID" />
+          </Key>
+          <Property Name="StaffID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StaffNumber" Type="Int32" Nullable="false" />
+          <Property Name="Department1ID" Type="Int32" />
+          <Property Name="Department2ID" Type="Int32" />
+          <Property Name="Department3ID" Type="Int32" />
+          <Property Name="PostID" Type="Int32" Nullable="false" />
+          <Property Name="Period" Type="Int32" Nullable="false" />
+          <Property Name="AuthLevel" Type="Int32" Nullable="false" />
+          <Property Name="Club" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityContainer Name="OfficeManageEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApplyAccount" EntityType="Self.ApplyAccount" />
+          <EntitySet Name="ApplyBackup" EntityType="Self.ApplyBackup" />
+          <EntitySet Name="ApplyException" EntityType="Self.ApplyException" />
+          <EntitySet Name="ApplyMailingList" EntityType="Self.ApplyMailingList" />
+          <EntitySet Name="ApplyManage" EntityType="Self.ApplyManage" />
+          <EntitySet Name="ApplyServer" EntityType="Self.ApplyServer" />
+          <EntitySet Name="ApplyVPN" EntityType="Self.ApplyVPN" />
+          <EntitySet Name="ApplyWireless" EntityType="Self.ApplyWireless" />
+          <EntitySet Name="MST_Animal" EntityType="Self.MST_Animal" />
+          <EntitySet Name="MST_ApplyMethod" EntityType="Self.MST_ApplyMethod" />
+          <EntitySet Name="MST_ApplyStatus" EntityType="Self.MST_ApplyStatus" />
+          <EntitySet Name="MST_ApplyType" EntityType="Self.MST_ApplyType" />
+          <EntitySet Name="MST_AuthLevel" EntityType="Self.MST_AuthLevel" />
+          <EntitySet Name="MST_BloodType" EntityType="Self.MST_BloodType" />
+          <EntitySet Name="MST_Company" EntityType="Self.MST_Company" />
+          <EntitySet Name="MST_Department1" EntityType="Self.MST_Department1" />
+          <EntitySet Name="MST_Department2" EntityType="Self.MST_Department2" />
+          <EntitySet Name="MST_Department3" EntityType="Self.MST_Department3" />
+          <EntitySet Name="MST_Post" EntityType="Self.MST_Post" />
+          <EntitySet Name="PersonalInfo" EntityType="Self.PersonalInfo" />
+          <EntitySet Name="StaffInfo" EntityType="Self.StaffInfo" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OfficeManageModelStoreContainer" CdmEntityContainer="OfficeManageEntities">
+          <EntitySetMapping Name="ApplyAccount">
+            <EntityTypeMapping TypeName="OfficeManageModel.ApplyAccount">
+              <MappingFragment StoreEntitySet="ApplyAccount">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="ApplyID" ColumnName="ApplyID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="RegisterName" ColumnName="RegisterName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplyBackup">
+            <EntityTypeMapping TypeName="OfficeManageModel.ApplyBackup">
+              <MappingFragment StoreEntitySet="ApplyBackup">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="ApplyID" ColumnName="ApplyID" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="Members" ColumnName="Members" />
+                <ScalarProperty Name="BackupFolderPath" ColumnName="BackupFolderPath" />
+                <ScalarProperty Name="LeadTime" ColumnName="LeadTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplyException">
+            <EntityTypeMapping TypeName="OfficeManageModel.ApplyException">
+              <MappingFragment StoreEntitySet="ApplyException">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="ApplyID" ColumnName="ApplyID" />
+                <ScalarProperty Name="ExtensionTerm" ColumnName="ExtensionTerm" />
+                <ScalarProperty Name="ExceptionTreatment" ColumnName="ExceptionTreatment" />
+                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplyMailingList">
+            <EntityTypeMapping TypeName="OfficeManageModel.ApplyMailingList">
+              <MappingFragment StoreEntitySet="ApplyMailingList">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="ApplyID" ColumnName="ApplyID" />
+                <ScalarProperty Name="MailingListName" ColumnName="MailingListName" />
+                <ScalarProperty Name="Usage" ColumnName="Usage" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplyManage">
+            <EntityTypeMapping TypeName="OfficeManageModel.ApplyManage">
+              <MappingFragment StoreEntitySet="ApplyManage">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="ApplyID" ColumnName="ApplyID" />
+                <ScalarProperty Name="ApplyTypeID" ColumnName="ApplyTypeID" />
+                <ScalarProperty Name="ApplyMethodID" ColumnName="ApplyMethodID" />
+                <ScalarProperty Name="ApplyStatusID" ColumnName="ApplyStatusID" />
+                <ScalarProperty Name="Boss_StaffID" ColumnName="Boss_StaffID" />
+                <ScalarProperty Name="ApplyDate" ColumnName="ApplyDate" />
+                <ScalarProperty Name="LimitDate" ColumnName="LimitDate" />
+                <ScalarProperty Name="ApplyCode" ColumnName="ApplyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplyServer">
+            <EntityTypeMapping TypeName="OfficeManageModel.ApplyServer">
+              <MappingFragment StoreEntitySet="ApplyServer">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="ApplyID" ColumnName="ApplyID" />
+                <ScalarProperty Name="ManageNumber" ColumnName="ManageNumber" />
+                <ScalarProperty Name="OS" ColumnName="OS" />
+                <ScalarProperty Name="ExtensionTerm" ColumnName="ExtensionTerm" />
+                <ScalarProperty Name="ApplyReason" ColumnName="ApplyReason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplyVPN">
+            <EntityTypeMapping TypeName="OfficeManageModel.ApplyVPN">
+              <MappingFragment StoreEntitySet="ApplyVPN">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="ApplyID" ColumnName="ApplyID" />
+                <ScalarProperty Name="ManageNumber" ColumnName="ManageNumber" />
+                <ScalarProperty Name="ExtensionTerm" ColumnName="ExtensionTerm" />
+                <ScalarProperty Name="ApplyReason" ColumnName="ApplyReason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplyWireless">
+            <EntityTypeMapping TypeName="OfficeManageModel.ApplyWireless">
+              <MappingFragment StoreEntitySet="ApplyWireless">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="ApplyID" ColumnName="ApplyID" />
+                <ScalarProperty Name="ManageNumber" ColumnName="ManageNumber" />
+                <ScalarProperty Name="MacAddress" ColumnName="MacAddress" />
+                <ScalarProperty Name="ExtensionTerm" ColumnName="ExtensionTerm" />
+                <ScalarProperty Name="ApplyReason" ColumnName="ApplyReason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_Animal">
+            <EntityTypeMapping TypeName="OfficeManageModel.MST_Animal">
+              <MappingFragment StoreEntitySet="MST_Animal">
+                <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+                <ScalarProperty Name="AnimalName" ColumnName="AnimalName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_ApplyMethod">
+            <EntityTypeMapping TypeName="OfficeManageModel.MST_ApplyMethod">
+              <MappingFragment StoreEntitySet="MST_ApplyMethod">
+                <ScalarProperty Name="MethodID" ColumnName="MethodID" />
+                <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_ApplyStatus">
+            <EntityTypeMapping TypeName="OfficeManageModel.MST_ApplyStatus">
+              <MappingFragment StoreEntitySet="MST_ApplyStatus">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_ApplyType">
+            <EntityTypeMapping TypeName="OfficeManageModel.MST_ApplyType">
+              <MappingFragment StoreEntitySet="MST_ApplyType">
+                <ScalarProperty Name="ApplyTypeID" ColumnName="ApplyTypeID" />
+                <ScalarProperty Name="ApplyTypeName" ColumnName="ApplyTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_AuthLevel">
+            <EntityTypeMapping TypeName="OfficeManageModel.MST_AuthLevel">
+              <MappingFragment StoreEntitySet="MST_AuthLevel">
+                <ScalarProperty Name="AuthLevelID" ColumnName="AuthLevelID" />
+                <ScalarProperty Name="AuthLevelName" ColumnName="AuthLevelName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_BloodType">
+            <EntityTypeMapping TypeName="OfficeManageModel.MST_BloodType">
+              <MappingFragment StoreEntitySet="MST_BloodType">
+                <ScalarProperty Name="BloodTypeID" ColumnName="BloodTypeID" />
+                <ScalarProperty Name="BloodType" ColumnName="BloodType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_Company">
+            <EntityTypeMapping TypeName="OfficeManageModel.MST_Company">
+              <MappingFragment StoreEntitySet="MST_Company">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_Department1">
+            <EntityTypeMapping TypeName="OfficeManageModel.MST_Department1">
+              <MappingFragment StoreEntitySet="MST_Department1">
+                <ScalarProperty Name="Department1ID" ColumnName="Department1ID" />
+                <ScalarProperty Name="Department1Name" ColumnName="Department1Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_Department2">
+            <EntityTypeMapping TypeName="OfficeManageModel.MST_Department2">
+              <MappingFragment StoreEntitySet="MST_Department2">
+                <ScalarProperty Name="Department2ID" ColumnName="Department2ID" />
+                <ScalarProperty Name="Department2Name" ColumnName="Department2Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_Department3">
+            <EntityTypeMapping TypeName="OfficeManageModel.MST_Department3">
+              <MappingFragment StoreEntitySet="MST_Department3">
+                <ScalarProperty Name="Department3ID" ColumnName="Department3ID" />
+                <ScalarProperty Name="Department3Name" ColumnName="Department3Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MST_Post">
+            <EntityTypeMapping TypeName="OfficeManageModel.MST_Post">
+              <MappingFragment StoreEntitySet="MST_Post">
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="PostName" ColumnName="PostName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonalInfo">
+            <EntityTypeMapping TypeName="OfficeManageModel.PersonalInfo">
+              <MappingFragment StoreEntitySet="PersonalInfo">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName_Kana" ColumnName="LastName_Kana" />
+                <ScalarProperty Name="FirstName_Kana" ColumnName="FirstName_Kana" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="Address4" ColumnName="Address4" />
+                <ScalarProperty Name="Tel_Personal1" ColumnName="Tel_Personal1" />
+                <ScalarProperty Name="Tel_Personal2" ColumnName="Tel_Personal2" />
+                <ScalarProperty Name="Tel_Personal3" ColumnName="Tel_Personal3" />
+                <ScalarProperty Name="Tel_Company1" ColumnName="Tel_Company1" />
+                <ScalarProperty Name="Tel_Company2" ColumnName="Tel_Company2" />
+                <ScalarProperty Name="Tel_Company3" ColumnName="Tel_Company3" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Birthday_Year" ColumnName="Birthday_Year" />
+                <ScalarProperty Name="Birthday_Month" ColumnName="Birthday_Month" />
+                <ScalarProperty Name="Birthday_Day" ColumnName="Birthday_Day" />
+                <ScalarProperty Name="BloodTypeID" ColumnName="BloodTypeID" />
+                <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+                <ScalarProperty Name="BirthPlace" ColumnName="BirthPlace" />
+                <ScalarProperty Name="Motto" ColumnName="Motto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StaffInfo">
+            <EntityTypeMapping TypeName="OfficeManageModel.StaffInfo">
+              <MappingFragment StoreEntitySet="StaffInfo">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="StaffNumber" ColumnName="StaffNumber" />
+                <ScalarProperty Name="Department1ID" ColumnName="Department1ID" />
+                <ScalarProperty Name="Department2ID" ColumnName="Department2ID" />
+                <ScalarProperty Name="Department3ID" ColumnName="Department3ID" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="AuthLevel" ColumnName="AuthLevel" />
+                <ScalarProperty Name="Club" ColumnName="Club" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="OfficeManageModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="なし" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
